@@ -20,6 +20,7 @@ Spring - 2.1.7.RELEASE (inclued in pom.xml)
    git clone https://github.com/saiakhil2079/embl-crud.git
 
 2) Application uses in-memory database (h2). In order to connect to that, use the below link 
+
    http://<hostname>:8080/h2-console
 
    Person table will be created through liquibase script.We can cross check that by connecting to the above mentioned h2-console once we start the application. 
@@ -31,11 +32,12 @@ Spring - 2.1.7.RELEASE (inclued in pom.xml)
 4) Build and run the app using Maven
 
    mvn package
+   
    java -jar target/embl-crud-1.0.0.jar
    
    Also, you can run the app without packaging it by using: mvn spring-boot:run
    
-   The app will start running at http://<hostname>:8080
+   The app will start running at http://localhost:8080
 
 ### How to use the API
 The current version of the API is v1.0. Endpoints are secured with spring basic security. The username and password used for authorization are mentioned below.
@@ -44,7 +46,8 @@ username: admin
 password: password
 
 1) Creating new Persons/Person using POST /store 
-   http://<hostname>:8080/store
+
+   http://localhost:8080/store
 
 for example: [{
            "firstName":"Sarah",
@@ -62,14 +65,18 @@ for example: [{
          }]
 
 2) Retrieving all Persons using GET /retrieve
-   http://<hostname>:8080/retrieve
 
-3) Updating Persons/Person info using POST /update 
+   http://localhost:8080/retrieve
+
+3) Updating Persons/Person info using POST /update
+ 
    Since personId is not available in the database, assumed the combination of firstName, lastName and age as the primary key. We can update multiple persons information as well.
+   
    Assuming the above mentioned persons example is stored in database, we can use the below example to update their favouriteColour and hobby.
+   
    If any person entry is not available in database, application will throw an exception saying person not found.
    
-   http://<hostname>:8080/update
+   http://localhost:8080/update
    
    for example: [{
            "firstName":"Sarah",
@@ -87,7 +94,8 @@ for example: [{
          }]
 
 4) Deleting a person info using DELETE /delete 
+
    Combination of firstName, lastName and age are combined together to get the unique record from the database.
    So if we want to delete a person entry firstName, lastName and age are mandatory. 
    
-   http://<hostname>:8080/delete/Sarah/Raven/54
+   http://localhost:8080/delete/Sarah/Raven/54
