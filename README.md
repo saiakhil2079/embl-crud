@@ -2,9 +2,9 @@
 
 ### Spring web service of a CRUD of persons using Spring JPA, Spring MVC and Spring Boot, including GET, POST and DELETE operations for a person entity.
 
-### Attributes: firstName, lastName, age, favouriteColour, hobby.
+Attributes: firstName, lastName, age, favouriteColour, hobby.
 
-### Requeriments
+### Requirements
 
 Java - 1.8.x
 
