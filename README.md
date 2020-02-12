@@ -21,10 +21,12 @@ Spring - 2.1.7.RELEASE (inclued in pom.xml)
 
 2) Application uses in-memory database (h2). In order to connect to that, use the below link 
 
-   http://<hostname>:8080/h2-console
+   http://localhost:8080/h2-console
 
    Person table will be created through liquibase script.We can cross check that by connecting to the above mentioned h2-console once we start the application. 
+   
    We can also configure the application to use MariaDB through the below mentioned parameters which are available in application.yml. MariaDB dependency is already available in pom.xml.
+   
    Set the required driver-class-name, url, username and password if you want to use mariadb instead of h2.
 
 3) Username and password for h2 are sa and sa
@@ -43,6 +45,7 @@ Spring - 2.1.7.RELEASE (inclued in pom.xml)
 The current version of the API is v1.0. Endpoints are secured with spring basic security. The username and password used for authorization are mentioned below.
 
 username: admin
+
 password: password
 
 1) Creating new Persons/Person using POST /store 
