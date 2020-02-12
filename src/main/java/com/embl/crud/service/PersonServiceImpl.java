@@ -1,5 +1,6 @@
 package com.embl.crud.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -21,15 +22,18 @@ public class PersonServiceImpl implements PersonService {
 	@Autowired
 	private PersonRepository personRepository;
 
-	public void store(PersonDto personDto) {
-		Person person = new Person();
-		person.setFirstname(personDto.getFirstName());
-		person.setLastname(personDto.getLastName());
-		person.setAge(personDto.getAge());
-		person.setFavouritecolour(personDto.getFavouriteColour());
-		person.setHobby(personDto.getHobby());
-
-		personRepository.saveAndFlush(person);
+	public void store(List<PersonDto> personDto) {
+		List<Person> persons = new ArrayList<>();
+		for (PersonDto persondto : personDto) {
+			Person person = new Person();
+			person.setFirstname(persondto.getFirstName());
+			person.setLastname(persondto.getLastName());
+			person.setAge(persondto.getAge());
+			person.setFavouritecolour(persondto.getFavouriteColour());
+			person.setHobby(persondto.getHobby());
+			persons.add(person);
+		}
+		personRepository.saveAll(persons);
 	}
 
 	public List<PersonDto> retrieve() {
@@ -39,17 +43,20 @@ public class PersonServiceImpl implements PersonService {
 		return listOfPersons;
 	}
 
-	public void update(PersonDto personDto) {
-		Person person = personRepository.findByFirstnameAndLastnameAndAge(personDto.getFirstName(),
-				personDto.getLastName(), personDto.getAge());
-
-		if (Objects.isNull(person)) {
-			throw new PersonNotFoundException(personDto.getFirstName(), personDto.getLastName());
-		} else {
-			person.setFavouritecolour(personDto.getFavouriteColour());
-			person.setHobby(personDto.getHobby());
-			personRepository.saveAndFlush(person);
+	public void update(List<PersonDto> personDto) {
+		List<Person> persons = new ArrayList<>();
+		for (PersonDto persondto : personDto) {
+			Person person = personRepository.findByFirstnameAndLastnameAndAge(persondto.getFirstName(),
+					persondto.getLastName(), persondto.getAge());
+			if (Objects.isNull(person)) {
+				throw new PersonNotFoundException(persondto.getFirstName(), persondto.getLastName());
+			} else {
+				person.setFavouritecolour(persondto.getFavouriteColour());
+				person.setHobby(persondto.getHobby());
+				persons.add(person);
+			}
 		}
+		personRepository.saveAll(persons);
 
 	}
 

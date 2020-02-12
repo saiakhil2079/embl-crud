@@ -22,7 +22,7 @@ public class PersonController {
 	PersonService personService;
 
 	@PostMapping("/store")
-	public void store(@RequestBody PersonDto personDto) {
+	public void store(@RequestBody List<PersonDto> personDto) {
 		try {
 			personService.store(personDto);
 		} catch (Exception e) {
@@ -42,7 +42,7 @@ public class PersonController {
 	}
 
 	@PostMapping("/update")
-	public void update(@RequestBody PersonDto personDto) {
+	public void update(@RequestBody List<PersonDto> personDto) {
 		personService.update(personDto);
 	}
 
