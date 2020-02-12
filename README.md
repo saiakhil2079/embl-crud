@@ -16,6 +16,7 @@ Spring - 2.1.7.RELEASE (inclued in pom.xml)
 
 ### How to run
 1) Clone the repository.
+
    git clone https://github.com/saiakhil2079/embl-crud.git
 
 2) Application uses in-memory database (h2). In order to connect to that, use the below link 
